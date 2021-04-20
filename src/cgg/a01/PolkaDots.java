@@ -42,6 +42,7 @@ public class PolkaDots implements Sampler {
 
 		else {
 			return color;
+			
 		}
 
 	}
