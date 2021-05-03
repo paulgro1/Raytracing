@@ -19,7 +19,7 @@ public class Main {
 		image.write(filename);
 		System.out.println("Wrote image: " + filename);
 
-		image.sample(new ColoredDiscs(width, height, 200));
+		image.sample(new ColoredDiscs(width, height, 200)); 
 
 		filename = "doc/a02-discs-supersampling.png";
 		image.write(filename);
