@@ -5,4 +5,6 @@ package cgtools;
 // position.
 public interface Sampler {
   public Color getColor(double x, double y);
+
+  
 }
