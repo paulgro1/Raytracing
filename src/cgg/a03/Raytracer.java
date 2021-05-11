@@ -22,7 +22,7 @@ public class Raytracer implements Sampler {
 
 		for (Sphere s : spheres) {
 			Hit hit = s.intersect(ray);
-			if (hit != null && hit.t < t) {
+			if (hit != null) {
 				t = hit.t;
 				normal = hit.n;
 				color = hit.c;
