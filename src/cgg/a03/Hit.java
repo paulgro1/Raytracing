@@ -4,13 +4,13 @@ import cgtools.*;
 
 public class Hit {
 
-	double t; // strahlparameter
+	public final double t; // strahlparameter
 
-	Point x; // position des treffpunkts x
+	public final Point x; // position des treffpunkts x
 
-	Direction n; // normalenvektor
+	public final Direction n; // normalenvektor
 
-	Color c; // farbe im treffpunkt
+	public final Color c; // farbe im treffpunkt
 
 	public Hit(double t, Point x, Direction n, Color c) {
 		this.t = t;

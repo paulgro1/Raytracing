@@ -2,11 +2,12 @@ package cgg.a03;
 
 import static cgtools.Vector.*;
 
+import cgg.a04.Shape;
 import cgtools.Color;
 import cgtools.Direction;
 import cgtools.Point;
 
-public class Sphere {
+public class Sphere implements Shape{
 
 	Point center;
 	double r;

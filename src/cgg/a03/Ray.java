@@ -5,10 +5,10 @@ import static cgtools.Vector.*;
 
 public class Ray {
 
-	Point x; // Ursprung
-	Direction d; // Richtung
-	double tMin = 0; // untere Begrenzung t
-	double tMax = Double.POSITIVE_INFINITY; // obere Begrenzung t
+	public final Point x; // Ursprung
+	public final Direction d; // Richtung
+	public final double tMin = 0; // untere Begrenzung t
+	public final double tMax = Double.POSITIVE_INFINITY; // obere Begrenzung t
 
 	public Ray(Point x, Direction d) {
 		this.x = x;

@@ -65,7 +65,6 @@ public class Main {
 		Ray r3 = new Ray(point(0, 0, 0), direction(0, 0, -1));
 		Ray r4 = new Ray(point(0, 0, -4), direction(0, 0, -1));
 		Ray r5 = new Ray(point(0, 0, 0), direction(0, 0, -1));
-		r5.tMax = 2;
 
 		s1.intersect(r1);
 		s2.intersect(r2);
