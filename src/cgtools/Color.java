@@ -86,7 +86,7 @@ public final class Color {
   public static final Color green = color(0, 1, 0);
   public static final Color blue = color(0, 0, 1);
 
-  private static Color hue(double h) {
+  public static Color hue(double h) { 
     double r = Math.abs(h * 6 - 3) - 1;
     double g = 2 - Math.abs(h * 6 - 2);
     double b = 2 - Math.abs(h * 6 - 4);

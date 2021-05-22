@@ -1,22 +1,29 @@
 package cgg.a03;
 
-import static cgtools.Vector.*;
+import static cgtools.Vector.add;
+import static cgtools.Vector.dotProduct;
+import static cgtools.Vector.multiply;
+import static cgtools.Vector.normalize;
+import static cgtools.Vector.subtract;
 
 import cgg.a04.Shape;
+import cgg.a05.Material;
 import cgtools.Color;
 import cgtools.Direction;
 import cgtools.Point;
 
-public class Sphere implements Shape{
+public class Sphere implements Shape {
 
 	Point center;
 	double r;
-	Color color;
+//	Color color;
+	Material material;
 
-	public Sphere(Point center, double r, Color color) {
+	public Sphere(Point center, double r, Material material) {
 		this.center = center;
 		this.r = r;
-		this.color = color;
+//		this.color = color;
+		this.material = material;
 	}
 
 	public Hit intersect(Ray ray) {
@@ -40,7 +47,7 @@ public class Sphere implements Shape{
 //			System.out.println();
 //			System.out.println(s.toString());
 //			System.out.println(dNormalized.toString());
-			return new Hit(t, s, dNormalized, color);
+			return new Hit(t, s, dNormalized, material);
 		} else
 
 			return null;

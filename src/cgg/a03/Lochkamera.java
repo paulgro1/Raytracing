@@ -20,8 +20,8 @@ public class Lochkamera {
 
 		double xd = x - width / 2;
 		double yd = ((height / 2) - y);
-		double zd = -((width / 2) / Math.tan(winkel / 2));
+		double zd = -((height / 2) / Math.tan(winkel / 2));
 
-		return new Ray(camera, normalize(direction(xd, yd, zd)));
+		return new Ray(camera, normalize(direction(xd, yd, zd)), 0, Double.POSITIVE_INFINITY);
 	}
 }

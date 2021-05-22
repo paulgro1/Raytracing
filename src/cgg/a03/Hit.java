@@ -1,6 +1,9 @@
 package cgg.a03;
 
-import cgtools.*;
+import cgg.a05.Material;
+import cgtools.Color;
+import cgtools.Direction;
+import cgtools.Point;
 
 public class Hit {
 
@@ -10,13 +13,16 @@ public class Hit {
 
 	public final Direction n; // normalenvektor
 
-	public final Color c; // farbe im treffpunkt
+//	public final Color c; // farbe im treffpunkt
 
-	public Hit(double t, Point x, Direction n, Color c) {
+	public final Material material;
+
+	public Hit(double t, Point x, Direction n, Material material) {
 		this.t = t;
 		this.x = x;
 		this.n = n;
-		this.c = c;
+//		this.c = c;
+		this.material = material;
 
 	}
 
