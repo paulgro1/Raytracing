@@ -24,7 +24,7 @@ public class Plane implements Shape {
 
 	public Plane(Point p, Direction n, double r, Material material) {
 		this.p = p;
-		this.n = n;
+		this.n = normalize(n);
 		this.r = r;
 //		this.color = color;
 		this.material = material;
@@ -32,7 +32,7 @@ public class Plane implements Shape {
 
 	public Plane(Point p, Direction n, Material material) {
 		this.p = p;
-		this.n = n;
+		this.n = normalize(n);
 //		this.color = color;
 		this.material = material;
 	}
@@ -50,8 +50,7 @@ public class Plane implements Shape {
 		if (ray.isValid(t)) {
 			Point s = add(multiply(ray.d, t), ray.x);
 			if (length(subtract(s, p)) < r) {
-				Direction dNormalized = normalize(ray.d);
-				Hit hit = new Hit(t, s, dNormalized, material);
+				Hit hit = new Hit(t, s, n, material);
 				return hit;
 			}
 		}

@@ -42,7 +42,13 @@ public class DiffusedMaterial implements Material {
 
 		Direction d = normalize(add(hit.n, r));
 
-		return new Ray(hit.x, d, Util.EPSILON, Double.POSITIVE_INFINITY);
+		if (length(d) < 1)
+
+			return new Ray(hit.x, d, Util.EPSILON, Double.POSITIVE_INFINITY);
+
+		else
+			return scatteredRay(ray, hit);
+
 	}
 
 }

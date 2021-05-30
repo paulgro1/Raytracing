@@ -44,9 +44,6 @@ public class Sphere implements Shape {
 			Point s = add(multiply(ray.d, t), ray.x);
 			Direction dNormalized = normalize(subtract(s, center));
 
-//			System.out.println();
-//			System.out.println(s.toString());
-//			System.out.println(dNormalized.toString());
 			return new Hit(t, s, dNormalized, material);
 		} else
 

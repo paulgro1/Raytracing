@@ -1,6 +1,8 @@
 package cgg.a04;
 
-import static cgtools.Color.*;
+import static cgtools.Color.add;
+import static cgtools.Color.black;
+import static cgtools.Color.multiply;
 
 import cgg.a03.Hit;
 import cgg.a03.Lochkamera;
@@ -11,7 +13,7 @@ import cgtools.Sampler;
 public class GroupRaytracer implements Sampler {
 
 	Group group;
-	Lochkamera cam = new Lochkamera(Math.PI / 3, 1280, 720);
+	Lochkamera cam = new Lochkamera(Math.PI / 3, 640, 360);
 	int depth;
 
 	public GroupRaytracer(Group group, int depth) {
@@ -36,8 +38,8 @@ public class GroupRaytracer implements Sampler {
 		Ray scatteredRay = hit.material.scatteredRay(ray, hit);
 
 		if (scatteredRay != null)
-			return multiply(add(hit.material.getEmission(hit), hit.material.getAlbedo(hit)),
-					calculateRadiance(group, scatteredRay, depth - 1));
+			return add(multiply(calculateRadiance(group, scatteredRay, depth), hit.material.getAlbedo(hit)), hit.material.getEmission(hit));
+
 		else
 			return hit.material.getEmission(hit);
 	}
