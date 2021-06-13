@@ -36,10 +36,11 @@ public class Glass implements Material {
 	}
 
 	public static Direction refract(Direction d, Direction n, double n1, double n2) {
+		//Brechungsgesetz
 		double r = n1 / n2;
 		double c = -dotProduct(n, d);
 		double discriminant = 1 - (r * r) * (1 - (c * c));
-		if (discriminant < 0)
+		if (discriminant < 0) //Totalreflexion nur bei negativer Diskriminanten
 			return null;
 		else
 			return add(multiply(r, d), multiply(r * c - Math.sqrt(discriminant), n));
@@ -51,6 +52,7 @@ public class Glass implements Material {
 	}
 
 	public static double schlick(Direction d, Direction n, double n1, double n2) {
+		//Spekularer Reflexionsfaktor r
 		double r0 = Math.pow((n1 - n2) / (n1 + n2), 2);
 		return r0 + (1 - r0) * Math.pow(1 + dotProduct(n, d), 5);
 	}
@@ -74,7 +76,7 @@ public class Glass implements Material {
 		if (dt != null && random() > schlick(normalize(ray.d), n, n1, n2))
 			// then refract
 			return new Ray(hit.x, dt, Util.EPSILON, Double.POSITIVE_INFINITY);
-		else
+		else // reflect
 			return new Ray(hit.x, reflect(normalize(ray.d), n), Util.EPSILON, Double.POSITIVE_INFINITY);
 
 	}

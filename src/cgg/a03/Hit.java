@@ -15,13 +15,28 @@ public class Hit {
 
 //	public final Color c; // farbe im treffpunkt
 
+	public final double u;
+	public final double v;
+
 	public final Material material;
 
 	public Hit(double t, Point x, Direction n, Material material) {
 		this.t = t;
 		this.x = x;
 		this.n = n;
+		this.u = 0;
+		this.v = 0;
 //		this.c = c;
+		this.material = material;
+
+	}
+
+	public Hit(double t, Point x, Direction n, double u, double v, Material material) {
+		this.t = t;
+		this.x = x;
+		this.n = n;
+		this.u = u - Math.floor(u);
+		this.v = v - Math.floor(v);
 		this.material = material;
 
 	}

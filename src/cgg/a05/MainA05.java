@@ -7,11 +7,13 @@ import static cgtools.Color.white;
 import static cgtools.Vector.direction;
 import static cgtools.Vector.point;
 import static cgg.a06.Glass.*;
+import static cgg.a03.Lochkamera.*;
 
 import java.util.ArrayList;
 
 import cgg.Image;
 import cgg.a03.Hit;
+import cgg.a03.Lochkamera;
 import cgg.a03.Ray;
 import cgg.a03.Sphere;
 import cgg.a04.Background;
@@ -26,8 +28,8 @@ import cgtools.Color;
 public class MainA05 {
 
 	public static void main(String[] args) {
-		final int width = 640;
-		final int height = 360;
+		final int width = 1280;
+		final int height = 720;
 
 		// Creates an image and iterates over all pixel positions inside the image.
 		Image image = new Image(width, height);
@@ -48,8 +50,10 @@ public class MainA05 {
 		shapes.add(globe3);
 
 		Group group = new Group(shapes);
+		
+		Lochkamera cam = new Lochkamera(Math.PI / 3, width, height);
 
-		GroupRaytracer raytracer = new GroupRaytracer(group, 5);
+		GroupRaytracer raytracer = new GroupRaytracer(group, 5, cam);
 
 		// Abtastung
 		image.sample(raytracer);
@@ -61,7 +65,7 @@ public class MainA05 {
 		shapes.add(new Sphere(point(1.5, 0.8, -2.5), 0.5, new Glass(green, 1.0, 1.5)));
 
 		Group secGroup = new Group(shapes);
-		GroupRaytracer secRaytracer = new GroupRaytracer(secGroup, 5);
+		GroupRaytracer secRaytracer = new GroupRaytracer(secGroup, 5, cam);
 
 		image.sample(secRaytracer);
 
@@ -69,21 +73,21 @@ public class MainA05 {
 		image.write(filename);
 		System.out.println("Wrote image: " + filename);
 
-		System.out.println("A06 Tests:");
-
-		System.out.println(reflect(direction(0.000, 0.000, 0.000), direction(0.000, 1.000, 0.000)));
-		System.out.println(reflect(direction(0.707, -0.707, 0.000), direction(0.000, 1.000, 0.000)));
-		System.out.println(reflect(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000)));
-		System.out.println(schlick(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
-		System.out.println(schlick(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
-		System.out.println(schlick(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
-		System.out.println(schlick(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
-		System.out.println(refract(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
-		System.out.println(refract(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
-		System.out.println(refract(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
-		System.out.println(refract(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
-		System.out.println(refract(direction(0.100, -0.995, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
-		System.out.println(refract(direction(0.100, -0.995, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
+//		System.out.println("A06 Tests:");
+//
+//		System.out.println(reflect(direction(0.000, 0.000, 0.000), direction(0.000, 1.000, 0.000)));
+//		System.out.println(reflect(direction(0.707, -0.707, 0.000), direction(0.000, 1.000, 0.000)));
+//		System.out.println(reflect(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000)));
+//		System.out.println(schlick(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
+//		System.out.println(schlick(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
+//		System.out.println(schlick(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
+//		System.out.println(schlick(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
+//		System.out.println(refract(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
+//		System.out.println(refract(direction(0.707, 0.707, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
+//		System.out.println(refract(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
+//		System.out.println(refract(direction(0.995, -0.100, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
+//		System.out.println(refract(direction(0.100, -0.995, 0.000), direction(0.000, 1.000, 0.000), 1, 1.5));
+//		System.out.println(refract(direction(0.100, -0.995, 0.000), direction(0.000, 1.000, 0.000), 1.5, 1));
 
 	}
 

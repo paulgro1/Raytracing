@@ -1,7 +1,9 @@
 package cgg.a03;
 
 import cgtools.*;
+
 import static cgtools.Vector.*;
+import static cgtools.Matrix.*;
 
 public class Lochkamera {
 
@@ -9,7 +11,15 @@ public class Lochkamera {
 	double height;
 	double width;
 	Point camera = point(0, 0, 0);
-
+	Matrix matrix;
+	
+	public Lochkamera(double winkel, double width, double height, Matrix matrix) {
+		this.winkel = winkel;
+		this.height = height;
+		this.width = width;
+		this.matrix = matrix;
+	}
+	
 	public Lochkamera(double winkel, double width, double height) {
 		this.winkel = winkel;
 		this.height = height;
@@ -22,6 +32,6 @@ public class Lochkamera {
 		double yd = ((height / 2) - y);
 		double zd = -((height / 2) / Math.tan(winkel / 2));
 
-		return new Ray(camera, normalize(direction(xd, yd, zd)), 0, Double.POSITIVE_INFINITY);
+		return new Ray(multiply(matrix,camera), multiply(matrix, normalize(direction(xd, yd, zd))), 0, Double.POSITIVE_INFINITY);
 	}
 }

@@ -13,12 +13,14 @@ import cgtools.Sampler;
 public class GroupRaytracer implements Sampler {
 
 	Group group;
-	Lochkamera cam = new Lochkamera(Math.PI / 3, 640, 360);
+	Lochkamera cam;
 	int depth;
+	
 
-	public GroupRaytracer(Group group, int depth) {
+	public GroupRaytracer(Group group, int depth, Lochkamera cam) {
 		this.group = group;
 		this.depth = depth;
+		this.cam = cam;
 	}
 
 	public Color getColor(double x, double y) {
