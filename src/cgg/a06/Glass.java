@@ -1,24 +1,29 @@
 package cgg.a06;
 
 import static cgtools.Color.black;
-import static cgtools.Random.*;
-
-import static cgtools.Vector.*;
+import static cgtools.Random.random;
+import static cgtools.Vector.add;
+import static cgtools.Vector.dotProduct;
+import static cgtools.Vector.multiply;
+import static cgtools.Vector.negate;
+import static cgtools.Vector.normalize;
+import static cgtools.Vector.subtract;
 
 import cgg.a03.Hit;
 import cgg.a03.Ray;
 import cgg.a05.Material;
 import cgtools.Color;
 import cgtools.Direction;
+import cgtools.Sampler;
 import cgtools.Util;
 
 public class Glass implements Material {
-	Color albedo;
+	Sampler albedo;
 	double inRefracIndex;
 	double outRefracIndex;
 
-	public Glass(Color albedo, double inRefracIndex, double outRefracIndex) {
-		this.albedo = albedo;
+	public Glass(Sampler texture, double inRefracIndex, double outRefracIndex) {
+		this.albedo = texture;
 		this.inRefracIndex = inRefracIndex;
 		this.outRefracIndex = outRefracIndex;
 	}
@@ -32,7 +37,7 @@ public class Glass implements Material {
 	@Override
 	public Color getAlbedo(Hit hit) {
 		// TODO Auto-generated method stub
-		return albedo;
+		return albedo.getColor(hit.u, hit.v);
 	}
 
 	public static Direction refract(Direction d, Direction n, double n1, double n2) {

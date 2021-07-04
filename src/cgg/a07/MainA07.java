@@ -37,7 +37,7 @@ public class MainA07 {
 		
 		shapes.add(background);
 		
-		for(int i = 0; i < 800; i ++) {
+		for(int i = 0; i < 100; i ++) {
 			shapes.add(new Sphere(point(random() * 4 - 2, random() * 2 - 1, random() * 2 - 2), 0.003, new BackgroundMaterial(white)));
 			
 		}

@@ -1,26 +1,25 @@
 package cgg.a05;
 
 import static cgtools.Color.black;
+import static cgtools.Random.random;
 import static cgtools.Vector.add;
-import static cgtools.Vector.*;
-import static cgtools.Random.*;
+import static cgtools.Vector.direction;
+import static cgtools.Vector.length;
 import static cgtools.Vector.normalize;
-
-import java.util.Random;
 
 import cgg.a03.Hit;
 import cgg.a03.Ray;
 import cgtools.Color;
 import cgtools.Direction;
-import cgtools.Point;
+import cgtools.Sampler;
 import cgtools.Util;
 
 public class DiffusedMaterial implements Material {
 
-	Color albedo;
+	Sampler albedo;
 
-	public DiffusedMaterial(Color albedo) {
-		this.albedo = albedo;
+	public DiffusedMaterial(Sampler texture) {
+		this.albedo = texture;
 	}
 
 	@Override
@@ -30,8 +29,9 @@ public class DiffusedMaterial implements Material {
 
 	@Override
 	public Color getAlbedo(Hit hit) {
-		// einfaches albedo returnen?
-		return albedo;
+
+		// return albedo;
+		return albedo.getColor(hit.u, hit.v);
 
 	}
 

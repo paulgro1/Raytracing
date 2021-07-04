@@ -1,23 +1,30 @@
 package cgg.a06;
 
 import static cgtools.Color.black;
-import static cgtools.Vector.*;
+import static cgtools.Random.random;
+import static cgtools.Vector.add;
+import static cgtools.Vector.direction;
+import static cgtools.Vector.dotProduct;
+import static cgtools.Vector.length;
+import static cgtools.Vector.multiply;
+import static cgtools.Vector.normalize;
+import static cgtools.Vector.subtract;
 
 import cgg.a03.Hit;
 import cgg.a03.Ray;
 import cgg.a05.Material;
 import cgtools.Color;
 import cgtools.Direction;
+import cgtools.Sampler;
 import cgtools.Util;
-import static cgtools.Random.*;
 
 public class MetalMaterial implements Material {
 
-	Color albedo;
+	public final Sampler albedo;
 	double s;
 
-	public MetalMaterial(Color albedo, double s) {
-		this.albedo = albedo;
+	public MetalMaterial(Sampler texture, double s) {
+		this.albedo = texture;
 		this.s = s;
 	}
 
@@ -30,7 +37,7 @@ public class MetalMaterial implements Material {
 	@Override
 	public Color getAlbedo(Hit hit) {
 		// TODO Auto-generated method stub
-		return albedo;
+		return albedo.getColor(hit.u, hit.v);
 	}
 
 	@Override

@@ -1,10 +1,6 @@
 package cgg.a03;
 
-import static cgtools.Vector.add;
-import static cgtools.Vector.dotProduct;
-import static cgtools.Vector.multiply;
-import static cgtools.Vector.normalize;
-import static cgtools.Vector.subtract;
+import static cgtools.Vector.*;
 
 import cgg.a04.Shape;
 import cgg.a05.Material;
@@ -41,10 +37,18 @@ public class Sphere implements Shape {
 		double t = (-b - Math.sqrt(b * b - (4 * a * c))) / 2 * a;
 
 		if (ray.isValid(t)) {
-			Point s = add(multiply(ray.d, t), ray.x);
-			Direction dNormalized = normalize(subtract(s, center));
+			Point x = ray.pointAt(t);
+			Direction n = normalize(divide(subtract(x, center), r));
+			
+			//Texturkoordinate Kugeloberfläche:
+			
+			double azimuth = Math.PI + Math.atan2(n.x, n.z);
+			double inclination = Math.acos(n.y);
+			double u = azimuth / (2 * Math.PI);
+			double v = inclination / Math.PI;
+			
+			return new Hit(t, x, n, u, v, material);
 
-			return new Hit(t, s, dNormalized, material);
 		} else
 
 			return null;
